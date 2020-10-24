@@ -1,0 +1,43 @@
+@using sharpExercise.Models
+@model object
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "_Layout";
+    List<User> users = ViewBag.Users;
+}
+<style>
+    th,td{border: 1px solid black}
+</style>
+<h1>users</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in users)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td><a href="/user/show/@user.Id">@user.Username</a></td>
+            <td>@user.Email</td>
+            <td>
+                <div style="display: flex">
+                    <button onclick="window.location.href='/user/show/@user.Id'">Show</button>
+                    <button onclick="window.location.href='/user/edit/@user.Id'">Edit</button>
+                    <form action="/user/delete" method="post">
+                        <input type="hidden" name="Id" value="@user.Id">
+                        <input type="submit" value="Delete">
+                    </form>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<button onclick="window.location.href = '/user/create'">Create</button>

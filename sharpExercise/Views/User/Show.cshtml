@@ -1,0 +1,15 @@
+@using sharpExercise.Models
+@model object
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    User user = ViewBag.User;
+}
+
+<h2>@user.Username</h2>
+<ul>
+    <li>Id: @user.Id</li>
+    <li>Username: @user.Username</li>
+    <li>Email: @user.Email</li>
+</ul>

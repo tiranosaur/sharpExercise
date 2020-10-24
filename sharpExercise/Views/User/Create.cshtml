@@ -1,0 +1,22 @@
+@model object
+
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "_Layout";
+}
+
+<h2>Create User</h2>
+<form action="/user/store" method="post">
+    <input type="hidden" name="Id">
+    <div>
+        <label for="Username"></label>
+        <input type="text" name="Username" id="Username">
+    </div>
+    <div>
+        <label for="Email"></label>
+        <input type="text" name="Email" id="Email">
+    </div>
+    <div>
+        <input type="submit" value="Create">
+    </div>
+</form>

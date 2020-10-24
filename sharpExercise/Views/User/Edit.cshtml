@@ -1,0 +1,25 @@
+@using sharpExercise.Models
+@model object
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    User user = ViewBag.User;
+}
+
+<h2>Edit User</h2>
+<form action="/user/store" method="post">
+    <input type="hidden" name="Id" value="@user.Id">
+    <div>
+        <label for="Username"></label>
+        <input type="text" value="@user.Username" name="Username" id="Username">
+    </div>
+    <div>
+        <label for="Email"></label>
+        <input type="text" value="@user.Email" name="Email" id="Email">
+    </div>
+    <div>
+        <input type="submit" value="Update">
+    </div>
+</form>
+

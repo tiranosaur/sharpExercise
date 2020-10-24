@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/tiranosaur/.dotnet/store/|arch|/|tfm|",
+      "/home/tiranosaur/.nuget/packages"
+    ]
+  }
+}
