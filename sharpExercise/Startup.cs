@@ -23,9 +23,11 @@ namespace sharpExercise
             
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("home", "/", new {controller = "Main", action = "Index"});
                 endpoints.MapControllerRoute("default", "{controller=Main}/{action=Index}/{Id?}");
+                endpoints.MapControllerRoute("page404", "/404", new {controller = "Main", action = "Page404"});
             });
-            app.UseStatusCodePagesWithRedirects("/main/page404");
+            app.UseStatusCodePagesWithRedirects("/404");
         }
     }
 }

@@ -4,12 +4,13 @@ namespace sharpExercise.Controllers
 {
     public class Main : Controller
     {
-        // GET
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Page404()
         {
             return View();
