@@ -1,6 +1,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace sharpExercise.Controllers
 {
@@ -13,6 +15,12 @@ namespace sharpExercise.Controllers
         {
             ViewBag.Users = db.users.ToList();
             return View();
+        }
+
+        [HttpGet]
+        public string IndexJson()
+        {
+            return JsonSerializer.Serialize(new {users = db.users.ToList()});
         }
 
         [HttpGet]
