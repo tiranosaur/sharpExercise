@@ -1,0 +1,18 @@
+@using sharpExercise.Models
+@model object
+
+@{
+    ViewBag.Title = "Currencies";
+    Layout = "_Layout";
+    List<Currency> currencies = ViewBag.Currencies;
+}
+<h2>Currencies</h2>
+@if (currencies.Count() == 0)
+{
+    <h3 class="text-danger">Db is empty. Click <a class="btn badge-primary" href="/currency/fill">this</a> to download </h3>
+}
+else
+{
+    <p>filled</p>
+}
+

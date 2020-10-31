@@ -58,3 +58,4 @@
 /home/tiranosaur/Documents/sharp/sharpExercise/sharpExercise/obj/Debug/netcoreapp3.1/Razor/Views/User/Create.cshtml.g.cs
 /home/tiranosaur/Documents/sharp/sharpExercise/sharpExercise/obj/Debug/netcoreapp3.1/Razor/Views/User/Show.cshtml.g.cs
 /home/tiranosaur/Documents/sharp/sharpExercise/sharpExercise/obj/Debug/netcoreapp3.1/Razor/Views/Main/Try.cshtml.g.cs
+/home/tiranosaur/Documents/sharp/sharpExercise/sharpExercise/obj/Debug/netcoreapp3.1/Razor/Views/Currency/Index.cshtml.g.cs

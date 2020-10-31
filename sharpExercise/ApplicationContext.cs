@@ -1,7 +1,5 @@
-using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using sharpExercise.Models;
 
@@ -10,6 +8,7 @@ namespace sharpExercise
     public class ApplicationContext : DbContext
     {
         internal DbSet<User> users { get; set; }
+        internal DbSet<Currency> currencies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,7 +18,6 @@ namespace sharpExercise
                 .Build();
             string connectionString = config.GetConnectionString("Default");
             optionsBuilder.UseMySql(connectionString);
-            //optionsBuilder.UseMySql("server=127.0.0.1;port=3306;user=png;password=png;database=png;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
