@@ -8,7 +8,7 @@ namespace sharpExercise
     public class ApplicationContext : DbContext
     {
         internal DbSet<User> users { get; set; }
-        internal DbSet<Currency> currencies { get; set; }
+        internal DbSet<Valute> currencies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

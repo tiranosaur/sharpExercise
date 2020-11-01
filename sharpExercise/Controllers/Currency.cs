@@ -1,8 +1,11 @@
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using sharpExercise.Models;
 
 namespace sharpExercise.Controllers
 {
@@ -26,32 +29,29 @@ namespace sharpExercise.Controllers
             for (int i = 0; i <= 30; i++)
             {
                 date = date.AddDays(i);
-                FillByDate(date.ToString("dd/MM/yyyy"));
+                FillByDate(date);
             }
 
             return Redirect("/currency/index");
         }
 
-        private void FillByDate(string dateString)
+        private void FillByDate(DateTime date)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            
-            XmlDocument xml = new XmlDocument();
-            xml.Load($"{this.xmlUrl}{dateString}");
-            XmlElement rootNode = xml.DocumentElement;
-            DateTime date = DateTime.ParseExact(rootNode.Attributes[0].Value, "dd.MM.yyyy", null);
-            foreach (XmlNode xnode in rootNode)
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ValCurs));
+
+            HttpClient client = new HttpClient();
+            ValCurs result = (ValCurs) xmlSerializer.Deserialize(
+                client
+                    .GetAsync("http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002")
+                    .Result.Content.ReadAsStreamAsync().Result
+            );
+            foreach (Valute item in result)
             {
-                Models.Currency currency = new Models.Currency();
-                currency.valuteID = xnode.Attributes[0].Value;
-                currency.numCode = Int32.Parse(xnode.ChildNodes[0].InnerText);
-                currency.сharCode = xnode.ChildNodes[1].InnerText;
-                currency.nominal = Int32.Parse(xnode.ChildNodes[2].InnerText);
-                currency.name = xnode.ChildNodes[3].InnerText;
-                currency.value = Double.Parse(xnode.ChildNodes[4].InnerText);
-                currency.date = date;
-                db.Add(currency);
+                item.date = date;
+                db.Add(item);
             }
+
             db.SaveChanges();
         }
     }
